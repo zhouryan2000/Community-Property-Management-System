@@ -1,4 +1,4 @@
-package com.laioffer.comsystem;
+package com.laioffer.comSystem;
 
 import java.io.*;
 import javax.servlet.http.*;
