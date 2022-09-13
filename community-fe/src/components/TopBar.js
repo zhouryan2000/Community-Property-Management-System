@@ -3,7 +3,7 @@ import 'antd/dist/antd.min.css';
 import '../index.css';
 import '../styles/TopBar.css';
 import { LogoutOutlined } from "@ant-design/icons"
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 
 const items = [
     {
@@ -17,7 +17,7 @@ const items = [
         className: 'menu-item',
     },
     {
-        label: 'Service Booking',
+        label: 'Booking',
         key: 'SubMenu',
         className: 'menu-item',
         children: [
@@ -39,8 +39,8 @@ const items = [
 ];
 
 const TopBar = () => {
-    const [current, setCurrent] = useState('mail');
-    // const isLoggedIn = true;
+    const [current, setCurrent] = useState('dashboard');
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const onClick = (e) => {
         console.log('click ', e);
@@ -48,12 +48,22 @@ const TopBar = () => {
     };
 
     return (
+
+        isLoggedIn ?
+
         <header className="header">
             <span className="title">EasyLife</span>
             <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items}
                   className="menu"/>
             <div className="buttons">
-                <LogoutOutlined className="logout-button"/>
+                <LogoutOutlined className="logout-button" onClick={() => {setIsLoggedIn(false)}}/>
+            </div>
+        </header>
+        :
+        <header className="header">
+            <span className="title">EasyLife</span>
+            <div className="not-logged-in-buttons">
+                <Button type="text" className="sign-up-button">Sign Up</Button>
             </div>
         </header>
     )

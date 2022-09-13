@@ -1,13 +1,14 @@
 .title {
-    flex: 2;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     font-size: 30px;
     color: floralwhite;
+    flex: 1;
+    padding: 30px;
 }
 
 .menu {
-    flex: 3;
+    width: 600px;
     background-color: skyblue;
 }
 
@@ -15,6 +16,7 @@
     color: floralwhite;
     font-size: 15px;
     text-align: center;
+    width: 150px;
 }
 
 .header {
@@ -28,14 +30,27 @@
 }
 
 .buttons {
-    flex: 3
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .logout-button {
     font-size: 20px;
-    padding-right: 20px;
+    margin-right: 20px;
     color: floralwhite;
+    padding-left: 20px;
+}
+
+.not-logged-in-buttons {
+    flex: 1;
     display: flex;
     justify-content: flex-end;
+}
+
+.sign-up-button {
+    font-size: 15px;
+    margin-right: 20px;
+    color: floralwhite;
 }
 
