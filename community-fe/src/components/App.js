@@ -1,9 +1,12 @@
-import '../styles/App.css';
+import TopBar from './TopBar'
+import { Menu } from 'antd';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+
 
 function App() {
   return (
-    <div className="App">
-      MANAGEMENT SYSTEM
+    <div>
+        <TopBar />
     </div>
   );
 }
