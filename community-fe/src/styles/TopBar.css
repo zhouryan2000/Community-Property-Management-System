@@ -1,0 +1,41 @@
+.title {
+    flex: 2;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: floralwhite;
+}
+
+.menu {
+    flex: 3;
+    background-color: skyblue;
+}
+
+.menu-item {
+    color: floralwhite;
+    font-size: 15px;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    background-color: skyblue;
+}
+
+.buttons {
+    flex: 3
+}
+
+.logout-button {
+    font-size: 20px;
+    padding-right: 20px;
+    color: floralwhite;
+    display: flex;
+    justify-content: flex-end;
+}
+
