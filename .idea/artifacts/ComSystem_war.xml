@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ComSystem:war">
+    <output-path>$PROJECT_DIR$/ComSystem/ComSystem/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ComSystem</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ComSystem-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ComSystem:war exploded" />
+    </root>
+  </artifact>
+</component>
