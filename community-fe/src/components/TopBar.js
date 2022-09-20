@@ -18,18 +18,18 @@ const items = [
     },
     {
         label: 'Booking',
-        key: 'SubMenu',
+        key: 'booking',
         className: 'menu-item',
-        children: [
-                {
-                    label: 'Option 1',
-                    key: 'setting:1',
-                },
-                {
-                    label: 'Option 2',
-                    key: 'setting:2',
-                },
-        ],
+        // children: [
+        //         {
+        //             label: 'Option 1',
+        //             key: 'setting:1',
+        //         },
+        //         {
+        //             label: 'Option 2',
+        //             key: 'setting:2',
+        //         },
+        // ]
     },
     {
         label: 'Posts',
@@ -38,14 +38,17 @@ const items = [
     },
 ];
 
-const TopBar = () => {
-    const [current, setCurrent] = useState('dashboard');
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+const TopBar = (props) => {
+    // const [current, setCurrent] = useState('dashboard');
+    const {selected, changeSelected, isLoggedIn, handleLogout} = props;
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const onClick = (e) => {
         console.log('click ', e);
-        setCurrent(e.key);
+        changeSelected(e.key);
     };
+
+    console.log(isLoggedIn);
 
     return (
 
@@ -53,17 +56,21 @@ const TopBar = () => {
 
         <header className="header">
             <span className="title">EasyLife</span>
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items}
+            <Menu onClick={onClick}
+                  selectedKeys={[selected]}
+                  mode="horizontal"
+                  items={items}
                   className="menu"/>
             <div className="buttons">
-                <LogoutOutlined className="logout-button" onClick={() => {setIsLoggedIn(false)}}/>
+                <LogoutOutlined className="logout-button" onClick={handleLogout}/>
             </div>
         </header>
         :
         <header className="header">
             <span className="title">EasyLife</span>
             <div className="not-logged-in-buttons">
-                <Button type="text" className="sign-up-button">Sign Up</Button>
+                <Button type="text" className="login-in-button" href='./login' target="_self">Login In</Button>
+                <Button type="text" className="sign-up-button" href='./register' target="_self">Sign Up</Button>
             </div>
         </header>
     )
