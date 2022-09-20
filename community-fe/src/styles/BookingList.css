@@ -1,0 +1,5 @@
+.booking-list {
+    height: 500px;
+    width: 100%;
+    overflow: scroll;
+}
