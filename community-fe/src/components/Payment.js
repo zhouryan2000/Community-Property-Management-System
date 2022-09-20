@@ -3,7 +3,7 @@ import { CreditCardOutlined, CalendarOutlined, NumberOutlined } from '@ant-desig
 import { Button, Input } from 'antd';
 
 const Payment =()=>(
-    <>
+    <div className="payment">
         <h2 align="left">Payment</h2>
         <div align="left"> Your payment for this month is $3890 </div>
         <Input placeholder="Card Number" prefix={<CreditCardOutlined />} />
@@ -16,7 +16,7 @@ const Payment =()=>(
         <br />
         <br />
         <Button type="primary" htmlType="submit"> Submit </Button>
-    </>
+    </div>
 )
 
 export default Payment;
