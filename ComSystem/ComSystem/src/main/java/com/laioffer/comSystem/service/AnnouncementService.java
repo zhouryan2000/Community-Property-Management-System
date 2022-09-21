@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +23,9 @@ public class AnnouncementService {
     public void saveAnnouncement(Announcement announcement) {
         Admin admin = getAdmin();
         if (admin != null) {
+            announcement.setAdmin(admin);
+            announcement.setDate(new Date());
+
             announcementDao.save(announcement);
         }
     }
