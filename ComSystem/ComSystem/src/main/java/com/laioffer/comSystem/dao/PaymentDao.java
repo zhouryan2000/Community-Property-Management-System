@@ -1,30 +1,29 @@
 package com.laioffer.comSystem.dao;
 
-import com.laioffer.comSystem.entity.Authority;
+import com.laioffer.comSystem.entity.Payment;
+import com.laioffer.comSystem.entity.Post;
 import com.laioffer.comSystem.entity.Resident;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public class ResidentDao {
+public class PaymentDao {
+
     @Autowired
-    private SessionFactory sessionFactory;
+    private  SessionFactory sessionFactory;
 
-    public void signUp(Resident resident) {
-        Authority authority = new Authority();
-        authority.setEmail(resident.getEmail());
-        authority.setAuthority("ROLE_USER");
-
+    public void pay(List<Payment> paymentList, Payment payment){
         Session session = null;
-
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-            session.save(authority);
-            session.save(resident);
+            paymentList.add(payment);
             session.getTransaction().commit();
+
         } catch (Exception ex) {
             ex.printStackTrace();
             if (session != null) session.getTransaction().rollback();
@@ -35,19 +34,13 @@ public class ResidentDao {
         }
     }
 
-    public Resident getResident(String email) {
-        Resident resident = null;
-        Session session = null;
-
-        try {
-            session = sessionFactory.openSession();
-            resident = session.get(Resident.class, email);
-        } catch (Exception ex) {
+    public List<Payment> allPayment(Resident resident){
+        try (Session session = sessionFactory.openSession()){
+            return resident.getPaymentList();
+        }catch (Exception ex){
             ex.printStackTrace();
-        } finally {
-            if (session != null) session.close();
         }
-        return resident;
+        return null;
     }
 
 

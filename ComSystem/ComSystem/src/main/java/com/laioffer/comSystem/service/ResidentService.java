@@ -1,5 +1,6 @@
 package com.laioffer.comSystem.service;
 
+import com.laioffer.comSystem.dao.PostDao;
 import com.laioffer.comSystem.dao.ResidentDao;
 import com.laioffer.comSystem.entity.Resident;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,9 @@ public class ResidentService {
         residentDao.signUp(resident);
         return true;
     }
+
+    public Resident getResident(String email) {
+        return residentDao.getResident(email);
+    }
+
 }
