@@ -24,7 +24,6 @@
     align-items: center;
     justify-content: flex-start;
     height: 50px;
-    position: fixed;
     width: 100%;
     background-color: skyblue;
 }
@@ -49,6 +48,12 @@
 }
 
 .sign-up-button {
+    font-size: 15px;
+    margin-right: 20px;
+    color: floralwhite;
+}
+
+.login-in-button {
     font-size: 15px;
     margin-right: 20px;
     color: floralwhite;

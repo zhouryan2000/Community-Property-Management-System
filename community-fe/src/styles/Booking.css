@@ -1,0 +1,13 @@
+.tab {
+    width: auto;
+    margin: 40px 40px 40px;
+    height: auto;
+}
+
+.booking-title {
+    text-align: left;
+    color: dodgerblue;
+    font-size: xx-large;
+    margin: 40px 40px;
+    font-weight: bold;
+}
