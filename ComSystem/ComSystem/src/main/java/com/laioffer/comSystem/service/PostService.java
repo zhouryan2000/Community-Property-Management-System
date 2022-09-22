@@ -29,17 +29,22 @@ public class PostService {
         String username = loggedInUser.getName();
         Resident resident = residentService.getResident(username);
 
+        if(resident != null){
+            postDao.createPost(post);
 
-        postDao.createPost(post);
+        }
+
 
     }
 
     public Post getPost(int id) {
         return postDao.getPostItem(id);
     }
+    // 未完成
+    public void deletePost(int postid) {
+    }
 
-    public Post getAllPost(int id) {
-        return postDao.getAllPost(id);
+    public void getAllPost() {
     }
 
 

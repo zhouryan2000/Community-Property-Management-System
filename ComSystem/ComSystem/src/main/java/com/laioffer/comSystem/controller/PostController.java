@@ -17,8 +17,13 @@ public class PostController {
 
     @RequestMapping(value =  "/post", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public void addMenuItemToCart(@PathVariable("post") Post post) {
+    public void addPost(@PathVariable("post") Post post) {
         postService.createPost(post);
     }
-
+    @RequestMapping(value =  "/post", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void deletePost(@PathVariable("post") int postid){postService.deletePost(postid);}
+    @RequestMapping(value =  "/post", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void getAllPost(){postService.getAllPost();}
 }

@@ -28,11 +28,25 @@ public class PaymentService {
 
         if(resident != null){
             List<Payment> paymentList = resident.getPaymentList();
-            paymentList.add(payment);
+            paymentDao.pay(resident.getPaymentList(), payment);
             payment.setAmount(0);
             return;
         }
         return;
     }
+    public List<Payment> allPayment(){
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+        Resident resident = residentService.getResident(username);
+
+        if(resident != null){
+            return paymentDao.allPayment(resident);
+
+        }
+        return new ArrayList<>();
+
+    }
+
+
 
 }

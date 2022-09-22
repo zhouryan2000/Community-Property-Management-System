@@ -17,7 +17,10 @@ public class PaymentController {
 
     @RequestMapping(value = "/payment", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public void checkout(@PathVariable("payment") Payment payment) {
+    public void pay(@PathVariable("payment") Payment payment) {
         paymentService.pay(payment);
     }
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void allPayment(){paymentService.allPayment();}
 }
