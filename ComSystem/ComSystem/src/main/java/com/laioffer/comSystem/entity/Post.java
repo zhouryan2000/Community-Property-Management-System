@@ -18,12 +18,19 @@ public class Post implements Serializable {
 
     private Date Date;
 
-    private String Title;
+    private String title;
 
     @ManyToOne
     @JsonIgnore
     private Resident resident;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getContent() {
         return content;
@@ -42,11 +49,11 @@ public class Post implements Serializable {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public Resident getResident() {

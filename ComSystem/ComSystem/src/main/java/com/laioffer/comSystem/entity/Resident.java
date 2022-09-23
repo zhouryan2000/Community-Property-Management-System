@@ -22,6 +22,17 @@ public class Resident {
     @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> bookingList;
 
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> postList;
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
     public List<Booking> getBookingList() {
         return bookingList;
     }
