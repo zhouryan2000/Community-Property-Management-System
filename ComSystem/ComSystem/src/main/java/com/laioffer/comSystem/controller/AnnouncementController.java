@@ -17,7 +17,7 @@ public class AnnouncementController {
     @RequestMapping(value = "/announcement", method = RequestMethod.GET)
     @ResponseBody
     public List<Announcement> getAnnouncements(){
-        return announcementService.getAnnouncementList();
+        return announcementService.getAllAnnouncement();
     }
 
     @RequestMapping(value = "/announcement", method = RequestMethod.POST)

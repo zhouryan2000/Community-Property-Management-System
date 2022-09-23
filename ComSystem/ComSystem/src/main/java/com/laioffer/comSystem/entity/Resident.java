@@ -16,8 +16,19 @@ public class Resident {
     private String username;
     private boolean enabled;
 
-    @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Payment> paymentList;
+
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Booking> bookingList;
+
+    public List<Booking> getBookingList() {
+        return bookingList;
+    }
+
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
+    }
 
     public List<Payment> getPaymentList() {
         return paymentList;

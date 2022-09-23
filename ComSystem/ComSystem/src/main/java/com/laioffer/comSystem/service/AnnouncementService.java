@@ -47,7 +47,7 @@ public class AnnouncementService {
     public List<Announcement> getAnnouncementList() {
         Admin admin = getAdmin();
         if (admin != null) {
-            return announcementDao.getAll(admin);
+            return announcementDao.getAllofAdmin(admin);
         }
         return new ArrayList<Announcement>();
     }
@@ -58,5 +58,9 @@ public class AnnouncementService {
         String username = loggedInUser.getName();
         Admin admin = adminService.getAdmin(username);
         return admin;
+    }
+
+    public List<Announcement> getAllAnnouncement() {
+        return announcementDao.getAllAnnouncements();
     }
 }
