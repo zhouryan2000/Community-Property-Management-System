@@ -17,7 +17,7 @@ public class AnnouncementController {
     @RequestMapping(value = "/announcement", method = RequestMethod.GET)
     @ResponseBody
     public List<Announcement> getAnnouncements(){
-        return announcementService.getAnnouncementList();
+        return announcementService.getAllAnnouncement();
     }
 
     @RequestMapping(value = "/announcement", method = RequestMethod.POST)
@@ -25,10 +25,8 @@ public class AnnouncementController {
     @ResponseBody
     public void uploadAnnouncement(@RequestBody Announcement announcement) {
         final Announcement announcementToUpload = new Announcement();
-        announcementToUpload.setAdmin(announcement.getAdmin());
         announcementToUpload.setTitle(announcement.getTitle());
         announcementToUpload.setContent(announcement.getContent());
-        announcementToUpload.setDate(announcement.getDate());
         announcementService.saveAnnouncement(announcementToUpload);
     }
 

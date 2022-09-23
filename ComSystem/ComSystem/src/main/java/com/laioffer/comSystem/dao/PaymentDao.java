@@ -1,8 +1,8 @@
 package com.laioffer.comSystem.dao;
 
-import com.laioffer.comSystem.entity.Admin;
-import com.laioffer.comSystem.entity.Announcement;
-import com.laioffer.comSystem.entity.Authority;
+import com.laioffer.comSystem.entity.Payment;
+import com.laioffer.comSystem.entity.Post;
+import com.laioffer.comSystem.entity.Resident;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +11,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class AdminDao {
+public class PaymentDao {
+
     @Autowired
-    private SessionFactory sessionFactory;
+    private  SessionFactory sessionFactory;
 
-    public void signUp(Admin admin) {
-        Authority authority = new Authority();
-        authority.setAuthority("ROLE_USER");
-        authority.setEmail(admin.getEmail());
-
+    public void pay(List<Payment> paymentList, Payment payment){
         Session session = null;
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-            session.save(authority);
-            session.save(admin);
+            paymentList.add(payment);
             session.getTransaction().commit();
 
         } catch (Exception ex) {
@@ -38,13 +34,14 @@ public class AdminDao {
         }
     }
 
-    public Admin getAdmin(String email) {
-        Admin admin = null;
-        try (Session session = sessionFactory.openSession()) {
-            admin = session.get(Admin.class, email);
-        } catch (Exception ex) {
+    public List<Payment> allPayment(Resident resident){
+        try (Session session = sessionFactory.openSession()){
+            return resident.getPaymentList();
+        }catch (Exception ex){
             ex.printStackTrace();
         }
-        return admin;
+        return null;
     }
+
+
 }
