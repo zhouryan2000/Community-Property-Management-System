@@ -37,15 +37,5 @@ public class PostService {
 
     }
 
-    public Post getPost(int id) {
-        return postDao.getPostItem(id);
-    }
-    // 未完成
-    public void deletePost(int postid) {
-    }
-
-    public void getAllPost() {
-    }
-
 
 }

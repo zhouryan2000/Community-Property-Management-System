@@ -20,6 +20,15 @@ public class Payment implements Serializable {
     private int cvv;
     private String nameOncard;
     private Date time;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int amount;
 
     @ManyToOne

@@ -2,6 +2,7 @@ package com.laioffer.comSystem.service;
 
 
 import com.laioffer.comSystem.dao.PaymentDao;
+import com.laioffer.comSystem.dao.ResidentDao;
 import com.laioffer.comSystem.entity.Payment;
 import com.laioffer.comSystem.entity.Resident;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,32 +22,24 @@ public class PaymentService {
     @Autowired
     private PaymentDao paymentDao;
 
-    public void pay(Payment payment){
+    public void addPayment(Payment payment){
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        String username = loggedInUser.getName();
-        Resident resident = residentService.getResident(username);
+        String email = loggedInUser.getName();
+        Resident resident = residentService.getResident(email);
 
         if(resident != null){
-            List<Payment> paymentList = resident.getPaymentList();
-            paymentDao.pay(resident.getPaymentList(), payment);
-            payment.setAmount(0);
-            return;
+            payment.setResident(resident);
+            paymentDao.addPayment(payment);
+            residentService.updateResidentBalance(email, -payment.getAmount());
         }
-        return;
     }
-    public List<Payment> allPayment(){
+    public List<Payment> getAllPayment(){
+        return paymentDao.getAllPayments();
+    }
+
+    public int getBalance() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        String username = loggedInUser.getName();
-        Resident resident = residentService.getResident(username);
-
-        if(resident != null){
-            return paymentDao.allPayment(resident);
-
-        }
-        return new ArrayList<>();
-
+        String email = loggedInUser.getName();
+        return residentService.getResident(email).getMoneyBalance();
     }
-
-
-
 }

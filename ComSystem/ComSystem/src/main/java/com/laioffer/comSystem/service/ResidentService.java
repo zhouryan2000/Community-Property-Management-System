@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResidentService {
     @Autowired
@@ -29,5 +31,20 @@ public class ResidentService {
     public Resident getResident(String email) {
         return residentDao.getResident(email);
     }
+
+    public void updateResidentBalance(String email, int amount) {
+        residentDao.updateResidentBalance(email, amount);
+    }
+
+    public List<Resident> getAllResident() {
+        return residentDao.getAllResidents();
+    }
+
+    public void addBalanceToAllUsers(int amount) {
+        for (Resident resident : residentDao.getAllResidents()) {
+            residentDao.updateResidentBalance(resident.getEmail(), amount);
+        }
+    }
+
 
 }
