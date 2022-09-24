@@ -67,8 +67,8 @@ function Posts(props) {
 
     const refresh = () => {
         setTimeout(() => {
-            fetchPostList();
             fetchMyPostList();
+            fetchPostList();
         }, 1000)
     }
 
@@ -89,14 +89,14 @@ function Posts(props) {
                         {isLoading ?
                             <Spin tip="Loading" size="large"/>
                             :
-                            <PostLists postList={postList} isAll={true} refresh={refresh}/>
+                            <PostLists list={postList} isAll={true} refresh={refresh}/>
                         }
                     </TabPane>
                     <TabPane tab="My Posts" key="my-posts">
                         {isLoading ?
                             <Spin tip="Loading" size="large"/>
                             :
-                            <PostLists postList={myPostList} isAll={false} refresh={refresh}/>
+                            <PostLists list={myPostList} isAll={false} refresh={refresh}/>
                         }
                     </TabPane>
                 </Tabs>

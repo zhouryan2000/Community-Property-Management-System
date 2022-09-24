@@ -1,5 +1,5 @@
-import React from 'react';
-import {Avatar, Button, List} from "antd";
+import React, {useEffect, useState} from 'react';
+import {Avatar, Button, List, message} from "antd";
 import user from "../assets/images/user.svg";
 import axios from "axios"
 
@@ -17,8 +17,10 @@ const formatDate = (date) => {
 }
 
 function PostLists(props) {
-    let { isAll, postList, refresh } = props;
+    let { isAll, list, refresh } = props;
     let deletePost = null;
+    const postList = list;
+
 
     const handleDelete = () => {
         console.log(deletePost);
@@ -32,6 +34,7 @@ function PostLists(props) {
         axios(opt)
             .then(response => {
                 if (response.status === 200) {
+                    message.success("Delete post successfully");
                     refresh();
                     deletePost = null;
                 }

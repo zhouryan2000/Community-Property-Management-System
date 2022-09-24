@@ -102,7 +102,7 @@ function AdminPayment(props) {
                       activeKey={activeTab}
                       onChange={key => setActiveTab(key)}
                 >
-                    <TabPane tab="All Payments" key="all-payments">
+                    <TabPane tab="All Processed Payments" key="all-payments">
                         {isLoading ?
                             <Spin tip="Loading" size="large"/>
                             :

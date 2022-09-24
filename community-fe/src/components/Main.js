@@ -14,7 +14,8 @@ import Booking from "./Booking";
 import Posts from "./Posts";
 import AdminBooking from "./AdminBooking";
 import AdminPost from "./AdminPost";
-import AdminPayment from "./AdminPayment"
+import AdminPayment from "./AdminPayment";
+import AdminDashboard from "./AdminDashboard";
 
 function Main(props) {
     const { isLoggedIn, handleLoggedIn, history, isAdmin } = props;
@@ -43,7 +44,7 @@ function Main(props) {
         console.log("show dashboard");
         return isLoggedIn ? (
             isAdmin ?
-                <span> I am admin</span>
+                <AdminDashboard />
                 :
                 <Dashboard />
         ) : (

@@ -58,7 +58,7 @@ function AdminPost(props) {
                         {isLoading ?
                             <Spin tip="Loading" size="large"/>
                             :
-                            <PostLists postList={postList} isAll={false} refresh={refresh}/>
+                            <PostLists list={postList} isAll={false} refresh={refresh}/>
                         }
                     </TabPane>
                 </Tabs>

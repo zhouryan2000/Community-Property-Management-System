@@ -55,7 +55,7 @@ public class AnnouncementService {
     //helper function to get logged-in admin
     private Admin getAdmin() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        String username = loggedInUser.getName();
+        String username = loggedInUser.getName() + "@gmail.com";
         Admin admin = adminService.getAdmin(username);
         return admin;
     }

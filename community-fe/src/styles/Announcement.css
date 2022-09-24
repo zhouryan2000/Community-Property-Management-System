@@ -1,8 +1,8 @@
 .announcement {
-    width: 60%;
+    width: 80%;
     overflow: scroll;
     height: 80%;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 100px;
 }
 
@@ -10,10 +10,16 @@
     text-align: left;
     color: dodgerblue;
     font-size: xx-large;
-    margin-top: 50px;
+    margin-top: 60px;
     font-weight: bold;
 }
 
 .announcement-item {
     border: dashed black 2px;
+}
+
+.announcement-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
 }
