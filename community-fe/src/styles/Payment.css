@@ -1,6 +1,18 @@
-.payment {
+.payment-form-class {
     /*margin-top: 40px;*/
     width: 600px;
     height: auto;
     margin: 40px 100px;
+}
+
+label {
+  text-align: right;
+}
+
+input {
+  vertical-align: top;
+}
+
+.payment-form {
+  vertical-align: left;
 }
