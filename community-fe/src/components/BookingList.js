@@ -1,48 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Avatar, List, Skeleton} from "antd"
 import elevator from '../assets/images/elevator.svg';
 import garbage from '../assets/images/garbage.svg';
 import room from '../assets/images/room.svg';
 
 function BookingList(props) {
-    const bookingList = [
-        {
-            service: 'elevator service',
-            status: 'pending',
-        },
-        {
-            service: 'common room',
-            status: 'approved',
-        },
-        {
-            service: 'garbage clean',
-            status: 'rejected',
-        },
-        {
-            service: 'elevator service',
-            status: 'pending',
-        },
-        {
-            service: 'common room',
-            status: 'approved',
-        },
-        {
-            service: 'garbage clean',
-            status: 'rejected',
-        },
-        {
-            service: 'elevator service',
-            status: 'pending',
-        },
-        {
-            service: 'common room',
-            status: 'approved',
-        },
-        {
-            service: 'garbage clean',
-            status: 'rejected',
-        }
-    ]
+    const { bookingList } = props;
 
     const getImage = (service) => {
         if (service === 'elevator service') {
@@ -62,12 +25,12 @@ function BookingList(props) {
             size="small"
             renderItem = {(item) => (
                 <List.Item style={{height: "70px"}}>
-                    <Avatar style={{margin: "20 60 20 20"}} shape="square" src={getImage(item.service)} />
-                    <span style={{fontSize: "large", color: "skyblue"}}>{item.service}</span>
+                    <Avatar style={{margin: "20 60 20 20"}} shape="square" src={getImage(item.type)} />
+                    <span style={{fontSize: "large", color: "skyblue"}}>{item.type}</span>
                     <span>Status: {item.status}</span>
-                    <span>Date: </span>
-                    <span>Time: </span>
-                    <span>Requested on: {"2022-9-17"}</span>
+                    <span>Date: {item.day} </span>
+                    <span>Time:{item.startTime} - {item.endTime}</span>
+                    <span>Requested on: {item.requestDate}</span>
                 </List.Item>
 
             )
