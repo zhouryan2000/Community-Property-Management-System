@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Avatar, Button, List} from "antd";
 import user from "../assets/images/user.svg";
 import axios from "axios"

@@ -1,25 +1,23 @@
 import React, {useEffect, useState} from "react";
-
-import {Tabs, message, Spin} from 'antd';
-import BookingCreater from "./BookingCreater";
-import BookingList from "./BookingList";
-import axios from "axios"
+import {message, Spin, Tabs} from "antd";
+import PostLists from "./PostLists";
+import axios from "axios";
 
 const { TabPane } = Tabs;
 
-function Booking(props) {
-    const [activeTab, setActiveTab] = useState("my-booking");
-    const [bookingList, setBookingList] = useState([]);
+function AdminPost(props) {
+    const [activeTab, setActiveTab] = useState("all-posts");
+    const [postList, setPostList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        fetchBookingList();
-    }, [activeTab]);
+        fetchPostList();
+    }, [])
 
-    const fetchBookingList = () => {
+    const fetchPostList = () => {
         const opt = {
             method: "GET",
-            url: '/booking',
+            url: '/all-post',
             headers: { 'content-type': 'application/json'}
         };
 
@@ -29,41 +27,44 @@ function Booking(props) {
             .then((res) => {
                 if (res.status === 200) {
                     console.log(res.data);
-                    setBookingList(res.data);
+                    setPostList(res.data);
                     setIsLoading(false);
                 }
             })
             .catch((err) => {
-                message.error("Fetch bookings failed!");
-                console.log("fetch bookings failed: ", err.message);
+                message.error("Fetch posts failed!");
+                console.log("fetch posts failed: ", err.message);
                 setIsLoading(false);
             });
+    }
+
+    const refresh = () => {
+        setTimeout(() => {
+            fetchPostList();
+        }, 1000)
     }
 
     return (
         <div>
             <div className='booking-title'>
-                <span>Booking system</span>
+                <span>Posts (Admin)</span>
             </div>
             <div className="tab">
-                <Tabs defaultActiveKey="my-booking"
+                <Tabs defaultActiveKey="all-posts"
                       activeKey={activeTab}
                       onChange={key => setActiveTab(key)}
                 >
-                    <TabPane tab="My Bookings" key="my-booking">
+                    <TabPane tab="All Posts" key="all-posts">
                         {isLoading ?
                             <Spin tip="Loading" size="large"/>
                             :
-                            <BookingList bookingList={bookingList}/>
+                            <PostLists postList={postList} isAll={false} refresh={refresh}/>
                         }
-                    </TabPane>
-                    <TabPane tab="New Booking" key="new-booking">
-                        <BookingCreater />
                     </TabPane>
                 </Tabs>
             </ div>
         </div>
-    );
+    )
 }
 
-export default Booking;
+export default AdminPost;

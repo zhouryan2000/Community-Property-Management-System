@@ -8,6 +8,7 @@
 @import "./styles/Payment.css";
 @import "./styles/Booking.css";
 @import "./styles/BookingList.css";
+@import "./styles/Announcement.css";
 
 body {
   margin: 0;

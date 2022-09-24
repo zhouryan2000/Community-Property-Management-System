@@ -20,8 +20,12 @@ function Login(props) {
         axios(opt)
             .then((res) => {
                 if (res.status === 200) {
-                    const { data } = res;
-                    handleLoggedIn(data);
+                    if (username == 'admin' && password == '123456') {
+                        handleLoggedIn(true);
+                    }
+                    else {
+                        handleLoggedIn(false);
+                    }
                     message.success("Login succeed! ");
                 }
             })

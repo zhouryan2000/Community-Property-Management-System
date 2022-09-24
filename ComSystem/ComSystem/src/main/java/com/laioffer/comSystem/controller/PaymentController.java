@@ -2,6 +2,7 @@ package com.laioffer.comSystem.controller;
 
 import com.laioffer.comSystem.entity.Announcement;
 import com.laioffer.comSystem.entity.Payment;
+import com.laioffer.comSystem.entity.Resident;
 import com.laioffer.comSystem.service.PaymentService;
 import com.laioffer.comSystem.service.ResidentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,4 +46,9 @@ public class PaymentController {
         residentService.addBalanceToAllUsers(amount);
     }
 
+    @RequestMapping(value = "/residents", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Resident> getAllResidents() {
+        return residentService.getAllResident();
+    }
 }

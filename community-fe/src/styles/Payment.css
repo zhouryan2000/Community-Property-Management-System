@@ -13,6 +13,6 @@ input {
   vertical-align: top;
 }
 
-.payment-form {
-  vertical-align: left;
+.payment-form-button {
+    width: 200px;
 }

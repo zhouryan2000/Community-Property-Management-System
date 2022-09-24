@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
     Route,
     Switch,
@@ -13,9 +12,12 @@ import Dashboard from "./Dashboard";
 import Payment from "./Payment";
 import Booking from "./Booking";
 import Posts from "./Posts";
+import AdminBooking from "./AdminBooking";
+import AdminPost from "./AdminPost";
+import AdminPayment from "./AdminPayment"
 
 function Main(props) {
-    const { isLoggedIn, handleLoggedIn, history } = props;
+    const { isLoggedIn, handleLoggedIn, history, isAdmin } = props;
 
     const showLogin = () => {
         return isLoggedIn ? (
@@ -28,7 +30,10 @@ function Main(props) {
     const showPayment = () => {
         console.log("show payment");
         return isLoggedIn ? (
-            <Payment />
+            isAdmin ?
+                <AdminPayment />
+                :
+                <Payment />
         ) : (
             <Redirect to="/" />
         );
@@ -37,7 +42,10 @@ function Main(props) {
     const showDashboard = () => {
         console.log("show dashboard");
         return isLoggedIn ? (
-            <Dashboard />
+            isAdmin ?
+                <span> I am admin</span>
+                :
+                <Dashboard />
         ) : (
             <Redirect to="/" />
         );
@@ -46,7 +54,10 @@ function Main(props) {
     const showBooking = () => {
         console.log("show booking");
         return isLoggedIn ? (
-            <Booking />
+            isAdmin ?
+                <AdminBooking />
+                :
+                <Booking />
         ) : (
             <Redirect to="/" />
         );
@@ -55,7 +66,10 @@ function Main(props) {
     const showPosts = () => {
         console.log("show posts");
         return isLoggedIn ? (
-            <Posts />
+            isAdmin ?
+                <AdminPost />
+                :
+                <Posts />
         ) : (
             <Redirect to="/" />
         );

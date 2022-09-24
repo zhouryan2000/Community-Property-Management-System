@@ -1,69 +1,83 @@
-import React from "react";
-import { Card } from 'antd';
-import { Avatar, List } from 'antd';
+import React, {useEffect, useState} from "react";
+import {Avatar, List, message, Spin} from 'antd';
+import user from "../assets/images/user.svg";
+import axios from "axios"
 
-/* function Dashboard(props) {
-    return <h2 align="left">Dashboard</h2>
-} */
-const data = [
-    {
-      title: 'Announcement 1',
-      publisher: 'Anna',
-      date: '03/25/2022',
-      content: 'This is announcement 1 content. '
-    },
-    {
-      title: 'Announcement 2',
-      publisher: 'Bob',
-      date: '03/25/2022',
-      content: 'This is announcement 2 content. '
-    },
-    {
-      title: 'Announcement 3',
-      publisher: 'Cindy',
-      date: '09/19/2022',
-      content: 'This is announcement 3 content. '
-    },
-    {
-      title: 'Announcement 4',
-      publisher: 'David',
-      date: '09/20/2022',
-      content: 'This is announcement 4 content. '
-    },
-  ];
+function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+}
 
+const formatDate = (date) => {
+    return (
+        [
+            date.getFullYear(),
+            padTo2Digits(date.getMonth() + 1),
+            padTo2Digits(date.getDate()),
+        ].join('-'));
+}
 
-const Dashboard = () => (
-  <>
-  <h2 class="font-weight-bold border-bottom pb-3 mt-3 mb-0 pr-5">Announcements</h2>
-    {/*<List*/}
-    {/*    grid={{ gutter: 16, column: 4 }}*/}
-    {/*    dataSource={data}*/}
-    {/*    renderItem={item => (*/}
-    {/*    <List.Item>*/}
-    {/*        <Card */}
-    {/*            title={item.title}*/}
-    {/*            extra={<a href="#">More</a>}*/}
-    {/*            style={{*/}
-    {/*                width: 300,*/}
-    {/*            }}*/}
-    {/*            cover={*/}
-    {/*                <img*/}
-    {/*                  alt="example"*/}
-    {/*                  src="https://i.postimg.cc/NfyFDztx/pexels-michael-tuszynski-2157404.jpg"*/}
-    {/*                />*/}
-    {/*              }*/}
-    {/*              avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}*/}
-    {/*            >*/}
-    {/*            <p>{item.content}</p>*/}
-    {/*            <p>by {item.publisher}</p>*/}
-    {/*            <p>on {item.date}</p>*/}
-    {/*        </Card>*/}
-    {/*    </List.Item>*/}
-    {/*    )}*/}
-    {/*/>*/}
-  </>
-);
+function Dashboard(props) {
+
+    const [announcementList, setAnnouncementList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        fetchList();
+    }, [])
+
+    const fetchList = () => {
+        const opt = {
+            method: "GET",
+            url: '/announcement',
+            headers: { 'content-type': 'application/json'}
+        };
+
+        setIsLoading(true);
+
+        axios(opt)
+            .then((res) => {
+                if (res.status === 200) {
+                    console.log(res.data);
+                    setAnnouncementList(res.data);
+                    setIsLoading(false);
+                }
+            })
+            .catch((err) => {
+                message.error("Fetch posts failed!");
+                console.log("fetch posts failed: ", err.message);
+                setIsLoading(false);
+            });
+    }
+
+    return (
+        <div>
+            <span className="announcement-title">Announcements</span>
+            <div className='announcement'>
+                {
+                    isLoading
+                        ?
+                        <Spin tip="Loading" size="large"/>
+                        :
+
+                        <List
+                            itemLayout="horizontal"
+                            dataSource={announcementList}
+                            renderItem={item => (
+                                <List.Item className="announcement-item">
+                                    <List.Item.Meta
+                                        avatar={<Avatar src={user} style={{marginLeft: "30px"}}/>}
+                                        title={item.title}
+                                        description={item.content}
+                                    />
+                                    <span style={{marginRight: "30px"}}> Posted on: {formatDate(new Date(item.date))}</span>
+                                </List.Item>
+                            )}
+                        />
+                }
+            </div>
+        </div>
+    );
+}
 
 
 

@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Avatar, Button, List, message, Spin, Tabs} from "antd";
+import {message, Spin, Tabs} from "antd";
 import PostLists from "./PostLists";
 import axios from "axios";
-import uploadPostButton from "./UploadPostButton";
 import UploadPostButton from "./UploadPostButton"
 
 const { TabPane } = Tabs;
