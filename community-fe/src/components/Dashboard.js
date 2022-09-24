@@ -36,32 +36,32 @@ const data = [
 const Dashboard = () => (
   <>
   <h2 class="font-weight-bold border-bottom pb-3 mt-3 mb-0 pr-5">Announcements</h2>
-    <List
-        grid={{ gutter: 16, column: 4 }}
-        dataSource={data}
-        renderItem={item => (
-        <List.Item>
-            <Card 
-                title={item.title}
-                extra={<a href="#">More</a>}
-                style={{
-                    width: 300,
-                }}
-                cover={
-                    <img
-                      alt="example"
-                      src="https://i.postimg.cc/NfyFDztx/pexels-michael-tuszynski-2157404.jpg"
-                    />
-                  }
-                  avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                >
-                <p>{item.content}</p>
-                <p>by {item.publisher}</p>
-                <p>on {item.date}</p>
-            </Card>
-        </List.Item>
-        )}
-    />
+    {/*<List*/}
+    {/*    grid={{ gutter: 16, column: 4 }}*/}
+    {/*    dataSource={data}*/}
+    {/*    renderItem={item => (*/}
+    {/*    <List.Item>*/}
+    {/*        <Card */}
+    {/*            title={item.title}*/}
+    {/*            extra={<a href="#">More</a>}*/}
+    {/*            style={{*/}
+    {/*                width: 300,*/}
+    {/*            }}*/}
+    {/*            cover={*/}
+    {/*                <img*/}
+    {/*                  alt="example"*/}
+    {/*                  src="https://i.postimg.cc/NfyFDztx/pexels-michael-tuszynski-2157404.jpg"*/}
+    {/*                />*/}
+    {/*              }*/}
+    {/*              avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}*/}
+    {/*            >*/}
+    {/*            <p>{item.content}</p>*/}
+    {/*            <p>by {item.publisher}</p>*/}
+    {/*            <p>on {item.date}</p>*/}
+    {/*        </Card>*/}
+    {/*    </List.Item>*/}
+    {/*    )}*/}
+    {/*/>*/}
   </>
 );
 

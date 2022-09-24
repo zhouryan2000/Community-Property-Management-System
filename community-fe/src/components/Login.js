@@ -12,32 +12,23 @@ function Login(props) {
     const onFinish = (values) => {
         const { username, password } = values;
 
-        if (username === 'abc' && password === '123') {
-            message.success("Login succeed! ");
-            handleLoggedIn(123);
-        }
-
-        // const opt = {
-        //     method: "POST",
-        //     url: `${BASE_URL}/signin`,
-        //     data: {
-        //         username: username,
-        //         password: password
-        //     },
-        //     headers: { "Content-Type": "application/json" }
-        // };
-        // axios(opt)
-        //     .then((res) => {
-        //         if (res.status === 200) {
-        //             const { data } = res;
-        //             handleLoggedIn(data);
-        //             message.success("Login succeed! ");
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log("login failed: ", err.message);
-        //         message.error("Login failed!");
-        //     });
+        const opt = {
+            method: "POST",
+            url: `/login?username=${username}&password=${password}`,
+            headers: { "Content-Type": "application/json" }
+        };
+        axios(opt)
+            .then((res) => {
+                if (res.status === 200) {
+                    const { data } = res;
+                    handleLoggedIn(data);
+                    message.success("Login succeed! ");
+                }
+            })
+            .catch((err) => {
+                console.log("login failed: ", err.message);
+                message.error("Login failed!");
+            });
     };
 
     return (

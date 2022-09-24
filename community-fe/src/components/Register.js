@@ -34,37 +34,42 @@ function Register(props) {
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
-        const { username, unit, password } = values;
+        const { email, unit, password, firstName, lastName, username } = values;
 
         // just for test
-        message.success('Registration succeed!');
-        history.push('/login');
+        // message.success('Registration succeed!');
+        // history.push('/login');
         
-        // const opt = {
-        //     method: 'POST',
-        //     url: `${BASE_URL}/signup`,
-        //     data: {
-        //         username: username,
-        //         unit: unit,
-        //         password: password
-        //     },
-        //     headers: { 'content-type': 'application/json'}
-        // };
-        //
-        // axios(opt)
-        //     .then( response => {
-        //         console.log(response)
-        //         // case1: registered success
-        //         if(response.status === 200) {
-        //             message.success('Registration succeed!');
-        //             props.history.push('/login');
-        //         }
-        //     })
-        //     .catch( error => {
-        //         console.log('register failed: ', error.message);
-        //         message.success('Registration failed!');
-        //         // throw new Error('Signup Failed!')
-        //     })
+        const opt = {
+            method: 'POST',
+            url: `/signup`,
+            data: {
+                email: email,
+                unitNumber: unit,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                username: username
+            },
+            headers: { 'content-type': 'application/json'}
+        };
+
+        // console.log(email, unit, password, firstName, lastName)
+
+        axios(opt)
+            .then( response => {
+                console.log(response)
+                // case1: registered success
+                if(response.status >= 200 && response.status <= 300) {
+                    message.success('Registration succeed!');
+                    history.push('/login');
+                }
+            })
+            .catch( error => {
+                console.log('register failed: ', error.message);
+                message.success('Registration failed!');
+                // throw new Error('Signup Failed!')
+            })
     };
 
     return (
@@ -76,12 +81,51 @@ function Register(props) {
                 className="register"
             >
                 <Form.Item
-                    name="username"
-                    label="Username"
+                    name="email"
+                    label="email"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            message: 'Please input your email!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    name="username"
+                    label="User name"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your username!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    name="firstName"
+                    label="First Name"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your first name!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    name="lastName"
+                    label="Last Name"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your last name!',
                         },
                     ]}
                 >
@@ -90,7 +134,7 @@ function Register(props) {
 
                 <Form.Item
                     name="unit"
-                    label="Unit"
+                    label="Unit Number"
                     rules={[
                         {
                             required: true,

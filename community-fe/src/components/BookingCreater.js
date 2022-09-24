@@ -1,7 +1,8 @@
 import React from "react";
 
 import moment from 'moment';
-import {DatePicker, TimePicker, Select, Button, Form} from 'antd';
+import {DatePicker, TimePicker, Select, Button, Form, message} from 'antd';
+import axios from "axios"
 
 const { Option } = Select;
 
@@ -27,16 +28,38 @@ const rangeConfig = {
 
 function BookingCreater(props) {
 
-    const handleChangeDate = (date, dateString) => {
-        console.log(date, dateString);
-    }
+    const addBooking = (values) => {
+        let type = values["service-picker"];
+        let day = values["date-picker"];
+        let startTime = values["time-picker"][0];
+        let endTime = values["time-picker"][1];
+        let requestDate = new Date().toISOString().slice(0, 10);
 
-    const handleChangeService = (value) => {
-        console.log(`selected ${value}`);
-    }
+        // console.log(type, day, startTime, endTime, requestDate);
+        const opt = {
+            method: 'POST',
+            url: `/booking`,
+            data: {
+                type: type,
+                day: day,
+                startTime: startTime,
+                endTime: endTime,
+                requestDate: requestDate
+            },
+            headers: { 'content-type': 'application/json'}
+        };
 
-    const handleChangeTime = (time, timeString) => {
-        console.log(`selected ${timeString}`)
+        axios(opt)
+            .then(response => {
+                console.log(response);
+                if (response.status >= 200 && response.status <= 300) {
+                    message.success("Add booking successfully!");
+                }
+            })
+            .catch(error => {
+                message.error("Add booking failed!");
+                console.log(error);
+            })
     }
 
     const disabledDate = (current) => {
@@ -56,6 +79,7 @@ function BookingCreater(props) {
             ],
         };
         console.log('Received values of form: ', values);
+        addBooking(values);
     };
     return (
         <Form name="time_related_controls"  onFinish={onFinish} layout='inline'>
@@ -66,9 +90,9 @@ function BookingCreater(props) {
                 },
             ]}>
                 <Select placeholder="select service">
-                    <Option value="elevator">Elevator Service</Option>
-                    <Option value="common-room">Common Room</Option>
-                    <Option value="garage-clean">Garage Clean</Option>
+                    <Option value="elevator service">Elevator Service</Option>
+                    <Option value="common room">Common Room</Option>
+                    <Option value="garbage clean">Garage Clean</Option>
                 </Select>
             </Form.Item>
             <Form.Item name="date-picker" label="date" {...config}>
